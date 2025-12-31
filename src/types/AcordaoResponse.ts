@@ -1,7 +1,7 @@
 export interface Acordao {
   num_processo:      string;
   id_tribunal:       string;
-  id_sentenca:       string;
+  id_acordao:       string;
   des_assuntos:      string[];
   des_orgao:         string;
   data_juntada:      string;
@@ -16,7 +16,7 @@ export interface Acordao {
 }
 
 export interface AcordaoResponse {
-  sentencas:   Acordao[];
+  acordaos:   Acordao[];
   total:       number;
   searchAfter: number[];
   status:      number;

@@ -266,7 +266,7 @@ const AssuntosEnum = Object.freeze([
     { id: 3395, descricao: 'Calúnia'},
     { id: 9493, descricao: 'Capacidade Processual'},
     { id: 11058, descricao: 'Cassação de licença para direção de veículo motorizado'},
-    { id: 9517, descricao: 'Causas Supervenientes à Sentença'},
+    { id: 9517, descricao: 'Causas Supervenientes à Acórdão'},
     { id: 9532, descricao: 'Caução / Contracautela'},
     { id: 10606, descricao: 'Cerceamento de Defesa'},
     { id: 10865, descricao: 'Cerceamento de Defesa'},
@@ -590,7 +590,7 @@ const AssuntosEnum = Object.freeze([
     { id: 9847, descricao: 'Previstos na Legislação Extravagante'},
     { id: 11090, descricao: 'Princípio da Insignificância'},
     { id: 10573, descricao: 'Prisão Civil'},
-    { id: 10640, descricao: 'Prisão Decorrente de Sentença Condenatória'},
+    { id: 10640, descricao: 'Prisão Decorrente de Acórdão Condenatória'},
     { id: 15043, descricao: 'Prisão domiciliar'},
     { id: 10904, descricao: 'Prisão Domiciliar / Especial'},
     { id: 7929, descricao: 'Prisão em flagrante'},
@@ -706,7 +706,7 @@ const AssuntosEnum = Object.freeze([
     { id: 11274, descricao: 'Violência contra superior ou militar de serviço'},
     { id: 14942, descricao: 'Violência Psicológica contra a Mulher'},
     { id: 10890, descricao: 'Vício Formal do Julgamento'},
-    { id: 9026, descricao: 'Vícios Formais da Sentença'},
+    { id: 9026, descricao: 'Vícios Formais da Acórdão'},
     { id: 8883, descricao: 'Órgãos Judiciários e Auxiliares da Justiça'},
 ]);
 

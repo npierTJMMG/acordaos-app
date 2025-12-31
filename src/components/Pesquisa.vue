@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSentencasStore } from '@/stores/useSentencasStore'
+import { useAcordaosStore } from '@/stores/useAcordaosStore'
 import { ref, computed, onMounted } from 'vue'
 import AssuntosEnum from '@/enums/AssuntosEnum'
 import ClassesEnum from '@/enums/ClassesEnum'
@@ -7,7 +7,7 @@ import { OrgaosPorJustica } from '@/util/OrgaosPorJustica'
 import type { Justica } from '@/types/Justica'
 
 // Instancia a store
-const store = useSentencasStore()
+const store = useAcordaosStore()
 
 // Listas estáticas
 const listaAssuntos = ref(AssuntosEnum)
@@ -182,7 +182,7 @@ function limparFormulario() {
       </fieldset>
 
       <fieldset class="rounded-lg d-flex align-center w-100 w-md-50 my-5">
-        <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada da sentença</legend>
+        <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada da acórdão</legend>
         <div class="d-flex flex-column w-50 pa-4">
           <label class="subtitulo">De</label>
           <v-text-field
@@ -224,7 +224,7 @@ function limparFormulario() {
           <v-btn :disabled="store.loading" class="mx-2" rounded="xl" variant="outlined" :ripple="false" flat text="LIMPAR"
               @click="limparFormulario()"></v-btn>
           <v-btn :disabled="store.loading" class="mx-2" rounded="xl" color="primary" :ripple="false" prepend-icon="mdi-magnify"
-              elevation="0" text="BUSCAR" @click="store.buscarSentencas(store.userOrder)"></v-btn>
+              elevation="0" text="BUSCAR" @click="store.buscarAcordaos(store.userOrder)"></v-btn>
         </div>
       </div>
     </v-form>

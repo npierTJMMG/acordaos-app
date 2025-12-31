@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
-import { useSentencasStore } from '@/stores/useSentencasStore'
-import type { Sentenca } from '@/types/SentencaResponse'
+import { useAcordaosStore } from '@/stores/useAcordaosStore'
+import type { Acordao } from '@/types/AcordaoResponse'
 
-const store = useSentencasStore()
+const store = useAcordaosStore()
 
-// lista de sentenças a exibir
-const sentencas = computed<Sentenca[]>(() => store.getSentencas)
+// lista de acórdãos a exibir
+const sentencas = computed<Acordao[]>(() => store.getAcordaos)
 
 
 // páginas visíveis e controle de paginação
@@ -42,10 +42,10 @@ const lastPage    = computed(() => store.totalPages)
 
       <!-- sem resultados -->
       <div v-else-if="!store.loading && sentencas.length === 0" class="pa-4">
-        Nenhuma sentença encontrada.
+        Nenhuma acórdão encontrada.
       </div>
 
-      <!-- lista de sentenças -->
+      <!-- lista de acórdãos -->
       <template v-else>
         <v-card
           v-for="s in sentencas"
@@ -55,14 +55,14 @@ const lastPage    = computed(() => store.totalPages)
           <div
             class="d-flex align-center titulo w-100 pa-2 bg-grey-lighten-1 text-uppercase rounded-lg"
           >
-            <span class="titulo">Sentença</span>
+            <span class="titulo">Acórdão</span>
             <v-spacer />
             <VBtnGroup class="justify-end" divided>
               <v-btn
                 width="60px"
                 color="#002a5e"
                 icon="mdi-content-copy"
-                @click="store.copiarSentenca(s)"
+                @click="store.copiarAcordao(s)"
               />
             </VBtnGroup>
           </div>

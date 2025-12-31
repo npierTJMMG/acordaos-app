@@ -1,6 +1,6 @@
 <template>
     <v-footer class="position-relative bottom-0 left-0">
-        <div class="texto">2025 © Justiças Militares - Banco de Sentenças - V 1.0.0</div>
+        <div class="texto">2025 © Justiças Militares - Banco de Acórdãos - V 1.0.0</div>
     </v-footer>
 </template>
 

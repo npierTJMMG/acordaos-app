@@ -1,11 +1,11 @@
 // src/stores/useAcordaosStore.ts
 import { defineStore } from 'pinia'
 import { ref, reactive, computed } from 'vue'
-import { fetchAcordaos } from '@/services/sentencaService'
+import { fetchAcordaos } from '@/services/acordaoService'
 import type { SearchFilter, AcordaoPayload } from '@/types/AcordaoPayload'
 import type { AcordaoResponse } from '@/types/AcordaoResponse'
 
-export const useAcordaosStore = defineStore('sentencasStore', () => {
+export const useAcordaosStore = defineStore('acordaosStore', () => {
   // --- filtros de busca ---
   const searchFilters = reactive<SearchFilter>({
     ids_assuntos: [],
@@ -33,7 +33,7 @@ export const useAcordaosStore = defineStore('sentencasStore', () => {
 
   // --- getters ---
   const getAcordaos = computed(() =>
-    results.value?.flatMap(r => r.sentencas) || []
+    results.value?.flatMap(r => r.acordaos) || []
   )
   const hasResults = computed(() => getAcordaos.value.length > 0)
 
@@ -91,12 +91,12 @@ export const useAcordaosStore = defineStore('sentencasStore', () => {
     pageOffset.value = absDelta
 
     // extrai o cursor a partir dos resultados já carregados
-    const sentencas = getAcordaos.value
+    const acordaos = getAcordaos.value
     // se for para trás, pego o timestamp da primeira acórdão
     // se for para frente, pego o timestamp da última acórdão
     searchAfterValue.value = backward
-      ? sentencas[0]['@timestamp']
-      : sentencas[sentencas.length - 1]['@timestamp']
+      ? acordaos[0]['@timestamp']
+      : acordaos[acordaos.length - 1]['@timestamp']
 
     // inverte o payloadOrder apenas se for para trás
     const payloadOrder = backward
@@ -109,7 +109,7 @@ export const useAcordaosStore = defineStore('sentencasStore', () => {
     if (backward && results.value) {
       results.value = results.value.map(r => ({
         ...r,
-        sentencas: [...r.sentencas].reverse()
+        acordaos: [...r.acordaos].reverse()
       }))
     }
 

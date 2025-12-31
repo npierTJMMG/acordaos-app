@@ -2,7 +2,7 @@
   "name": "banco-de-sentencas-vue-3",
   "private": true,
   "type": "module",
-  "description": "Aplicação para consulta de sentenças de primeiro grau",
+  "description": "Aplicação para consulta de acórdãos de primeiro grau",
   "version": "2.0.0",
   "scripts": {
     "dev": "vite",

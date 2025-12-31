@@ -7,7 +7,7 @@
     <div class="navbar d-flex text-white justify-center align-center">
         <div class="d-flex justify-end mr-5 align-center w-25">
             <v-icon class="mr-1">mdi-license</v-icon>
-            Sobre o Banco de Sentenças
+            Sobre o Banco de Acórdãos
         </div>
         <div class="d-flex justify-start ml-5 align-centers w-25">
             <v-icon class="mr-1">mdi-scale-balance</v-icon>

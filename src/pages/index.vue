@@ -20,8 +20,8 @@ import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
 import Pesquisa from '@/components/Pesquisa.vue';
 import Resultados from '@/components/Resultados.vue';
-import { useSentencasStore } from '@/stores/useSentencasStore';
+import { useAcordaosStore } from '@/stores/useAcordaosStore';
 
-const store = useSentencasStore()
+const store = useAcordaosStore()
 
 </script>
