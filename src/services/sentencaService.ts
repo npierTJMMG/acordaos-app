@@ -3,8 +3,17 @@ import api from '@/services/api'
 import type { SentencaPayload } from '@/types/SentencaPayload'
 import type { SentencaResponse } from '@/types/SentencaResponse'
 
-export async function fetchSentencas(payload: SentencaPayload, config?: any) {
+export async function fetchSentencas(
+  payload: SentencaPayload,
+  config?: any
+) {
+  const { data } = await api.get<SentencaResponse>(
+    '/acordaos/buscar',
+    {
+      params: payload,
+      ...config
+    }
+  )
 
-  const { data } = await api.post<SentencaResponse>('/acordaos/buscar', payload, config)
   return data
 }
