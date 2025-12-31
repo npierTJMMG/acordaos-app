@@ -2,7 +2,7 @@ let options = {
 	domain: '',
 	production_url: 'http://10.16.111.152',
 	production_path: '/bancosentencas-api/api',
-	development_url: 'http://localhost',
+	development_url: 'http://127.0.0.1',
 	development_path: '/api',
 	backend_port: ':8000',
 	frontend_port: ':8080',

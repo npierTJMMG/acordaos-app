@@ -5,6 +5,6 @@ import type { SentencaResponse } from '@/types/SentencaResponse'
 
 export async function fetchSentencas(payload: SentencaPayload, config?: any) {
 
-  const { data } = await api.post<SentencaResponse>('/sentencas/buscar', payload, config)
+  const { data } = await api.post<SentencaResponse>('/acordaos/buscar', payload, config)
   return data
 }
