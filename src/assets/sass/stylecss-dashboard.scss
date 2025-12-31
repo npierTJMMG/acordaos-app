@@ -1,0 +1,77 @@
+@import "stylecss/variables";
+@import "stylecss/mixins";
+
+// Plugins CSS
+@import "stylecss/plugins/plugin-bootstrap-switch";
+@import "stylecss/plugins/plugin-perfect-scrollbar";
+@import "stylecss/plugins/plugin-sweetalert2";
+@import "stylecss/plugins/plugin-card-wizard";
+@import "stylecss/plugins/plugin-jquery.jvectormap";
+@import "stylecss/plugins/plugin-fullcalendar";
+@import "stylecss/plugins/plugin-vue-notifyjs";
+@import "stylecss/plugins/plugin-nprogress";
+
+// Element UI plugins
+@import "stylecss/plugins/element-ui/plugin-tags";
+@import "stylecss/plugins/element-ui/plugin-slider";
+@import "stylecss/plugins/element-ui/plugin-select";
+@import "stylecss/plugins/element-ui/plugin-inputs";
+@import "stylecss/plugins/element-ui/plugin-tables";
+
+// Core CSS
+@import "stylecss/nucleo-outline";
+@import "stylecss/buttons";
+@import "stylecss/social-buttons";
+@import "stylecss/animated-buttons";
+@import "stylecss/inputs";
+@import "stylecss/typography";
+@import "stylecss/misc";
+@import "stylecss/misc-extend";
+@import "stylecss/navbar";
+@import "stylecss/dropdown";
+@import "stylecss/alerts";
+@import "stylecss/images";
+@import "stylecss/tables";
+@import "stylecss/footers";
+
+// components
+@import "stylecss/checkboxes-radio";
+@import "stylecss/progress";
+@import "stylecss/badges";
+@import "stylecss/pagination";
+@import "stylecss/info-areas";
+@import "stylecss/pills";
+@import "stylecss/tabs";
+@import "stylecss/modals";
+@import "stylecss/sidebar-and-main-panel";
+@import "stylecss/timeline";
+
+// cards
+@import "stylecss/cards";
+@import "stylecss/cards/card-chart";
+@import "stylecss/cards/card-map";
+@import "stylecss/cards/card-user";
+
+@import "stylecss/cards/card-background";
+@import "stylecss/cards/card-collapse";
+@import "stylecss/cards/card-contributions";
+@import "stylecss/cards/card-info-area";
+@import "stylecss/cards/card-lock";
+@import "stylecss/cards/card-pricing";
+@import "stylecss/cards/card-profile";
+@import "stylecss/cards/card-plain";
+@import "stylecss/cards/card-signup";
+@import "stylecss/cards/card-stats-mini";
+@import "stylecss/cards/card-stats";
+@import "stylecss/cards/card-subcategories";
+@import "stylecss/cards/card-testimonials";
+@import "stylecss/cards/card-tasks";
+
+// example pages and sections
+@import "stylecss/example-pages";
+@import "stylecss/sections";
+
+@import "stylecss/responsive";
+@import "stylecss/media-queries";
+
+@import "stylecss/custom_tjmmg";
