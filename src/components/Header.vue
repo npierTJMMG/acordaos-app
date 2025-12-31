@@ -1,7 +1,6 @@
 <template>
     <div class="header">
         <div class="logo w-100 h-100 d-flex justify-center align-center">
-            <v-img :height="88" aspect-ratio="16/9" src="../assets/banco-de-sentencas-logo.png"></v-img>
         </div>
     </div>
     <div class="navbar d-flex text-white justify-center align-center">
@@ -11,7 +10,7 @@
         </div>
         <div class="d-flex justify-start ml-5 align-centers w-25">
             <v-icon class="mr-1">mdi-scale-balance</v-icon>
-            Sobre a Justiça Militar
+            Sobre o Tribunal de Justiça Militar de Minas Gerais
         </div>
     </div>
 

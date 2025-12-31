@@ -134,53 +134,6 @@ function limparFormulario() {
         </div>
       </div>
 
-      <label class="subtitulo">Justiças e Órgãos</label>
-      <fieldset class="rounded-lg d-flex flex-column align-center my-0">
-        <legend>
-          <v-checkbox
-            v-model="todasJusticasSelecionadas"
-            density="compact"
-            label="Todas as Justiças/Órgãos"
-            hide-details
-            :indeterminate="isJusticasIndeterminate"
-            @change="selecionarTodasJusticas"
-            color="primary"
-          />
-        </legend>
-        <div class="justicas-orgaos d-flex flex-wrap justify-space-around">
-          <v-checkbox
-            v-for="justica in justicasList"
-            :key="justica.id_justica"
-            class="px-1 mb-3"
-            density="compact"
-            hide-details
-            :model-value="grupoChecked(justica.id_justica)"
-            @update:modelValue="() => handleJusticasSelecionadas(justica.id_justica)"
-            :indeterminate="grupoIndeterminate(justica.id_justica)"
-            :label="justica.des_justica"
-            color="primary"
-          />
-        </div>
-        <v-select
-          class="w-100 px-4 mb-4"
-          v-model="orgaosSelecionados"
-          :items="listaOrgaos"
-          label="Selecione os órgãos de cada Justiça"
-          item-title="descricao"
-          item-value="id"
-          variant="outlined"
-          multiple
-          chips
-          clearable
-          closable-chips
-          persistent-clear
-          density="compact"
-          hide-details
-          @update:modelValue="() => registrarDadosNoPayload()"
-          @click:clear="limparFormulario"
-        />
-      </fieldset>
-
       <fieldset class="rounded-lg d-flex align-center w-100 w-md-50 my-5">
         <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada da acórdão</legend>
         <div class="d-flex flex-column w-50 pa-4">

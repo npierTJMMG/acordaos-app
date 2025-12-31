@@ -75,10 +75,10 @@ const lastPage    = computed(() => store.totalPages)
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
-                <span class="subtitulo mt-1">Tribunal/Órgão:</span>
+                <span class="subtitulo mt-1">Número do Processo:</span>
               </VCol>
               <VCol md="9" class="text-center text-sm-left">
-                {{ s.des_tribunal }} – {{ s.des_orgao }}
+                {{ store.numProcessoFormatado(s.num_processo) }}
               </VCol>
             </VRow>
 
@@ -89,10 +89,10 @@ const lastPage    = computed(() => store.totalPages)
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
-                <span class="subtitulo mt-1">Número do Processo:</span>
+                <span class="subtitulo mt-1">Matéria:</span>
               </VCol>
               <VCol md="9" class="text-center text-sm-left">
-                {{ store.numProcessoFormatado(s.num_processo) }}
+                {{ s.materia }}
               </VCol>
             </VRow>
 
@@ -117,7 +117,7 @@ const lastPage    = computed(() => store.totalPages)
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
-                <span class="subtitulo mt-1">Assuntos:</span>
+                <span class="subtitulo mt-1">Assunto(s):</span>
               </VCol>
               <VCol md="9" class="text-center text-sm-left">
                 {{ store.assuntosFormatados(s.des_assuntos) }}
@@ -131,10 +131,38 @@ const lastPage    = computed(() => store.totalPages)
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
-                <span class="subtitulo mt-1">Juntada do Processo:</span>
+                <span class="subtitulo mt-1">Relator:</span>
               </VCol>
               <VCol md="9" class="text-center text-sm-left">
-                {{ store.dataFormatada(s.data_juntada) }}
+                {{ s.relator }}
+              </VCol>
+            </VRow>
+
+            <VRow dense>
+              <VCol
+                cols="12"
+                md="3"
+                sm="4"
+                class="text-center text-sm-right pr-sm-5"
+              >
+                <span class="subtitulo mt-1">Juntada no Processo:</span>
+              </VCol>
+              <VCol md="9" class="text-center text-sm-left">
+                {{ s.data_juntada }}
+              </VCol>
+            </VRow>
+
+            <VRow dense>
+              <VCol
+                cols="12"
+                md="3"
+                sm="4"
+                class="text-center text-sm-right pr-sm-5"
+              >
+                <span class="subtitulo mt-1">Ementa:</span>
+              </VCol>
+              <VCol class="container-texto-sentenca">
+                <div v-html="s.ementa" />
               </VCol>
             </VRow>
 
