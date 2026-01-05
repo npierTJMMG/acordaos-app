@@ -177,7 +177,7 @@ function limparFormulario() {
           <v-btn :disabled="store.loadingBusca" class="mx-2" rounded="xl" variant="outlined" :ripple="false" flat text="LIMPAR"
               @click="limparFormulario()"></v-btn>
           <v-btn :disabled="store.loadingBusca" class="mx-2" rounded="xl" color="primary" :ripple="false" prepend-icon="mdi-magnify"
-              elevation="0" text="BUSCAR" @click="store.buscarAcordaos(store.userOrder)"></v-btn>
+              elevation="0" text="BUSCAR" @click="store.buscarButton(store.userOrder)"></v-btn>
         </div>
       </div>
     </v-form>

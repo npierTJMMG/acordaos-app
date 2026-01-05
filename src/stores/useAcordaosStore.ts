@@ -51,8 +51,6 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
 
   // --- função genérica de busca ---  
   async function buscarAcordaos(payloadOrder: 'asc'|'desc') {
-    loadingBusca.value = true
-    loadingPaginacao.value = true
     error.value   = null
 
     try {
@@ -81,8 +79,17 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     }
   }
 
+  // Botão buscar chama essa função apenas para setar true no loading
+  async function buscarButton(payloadOrder: 'asc'|'desc') {
+    loadingBusca.value = true  
+    await buscarAcordaos(payloadOrder)
+  }
+
   // --- navega para a página X ---
   async function goToPage(target: number) {
+
+    loadingPaginacao.value = true
+
     if (target < 1 || target > totalPages.value || target === currentPage.value)
       return
 
@@ -192,6 +199,7 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     // actions
     init,
     buscarAcordaos,
+    buscarButton,
     goToPage,
     setUserOrder,
     limpar,
