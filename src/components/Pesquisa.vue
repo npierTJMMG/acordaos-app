@@ -168,15 +168,15 @@ function limparFormulario() {
       
       <div class="d-flex justify-end">
         <div class="mr-sm-4 w-sm-35 d-flex justify-end">
-          <div v-if="store.loading" class="d-none d-sm-flex align-center">
+          <div v-if="store.loadingBusca" class="d-none d-sm-flex align-center">
             <v-progress-circular indeterminate color="primary" class="mr-4 mr-sm-0"></v-progress-circular>
-            <p class="ml-3 mt-md-2">Carregando...</p>
+            <p class="ml-3 mt-md-2">Buscando...</p>
           </div>
         </div>
         <div class="ml-sm-4 d-flex align-center">
-          <v-btn :disabled="store.loading" class="mx-2" rounded="xl" variant="outlined" :ripple="false" flat text="LIMPAR"
+          <v-btn :disabled="store.loadingBusca" class="mx-2" rounded="xl" variant="outlined" :ripple="false" flat text="LIMPAR"
               @click="limparFormulario()"></v-btn>
-          <v-btn :disabled="store.loading" class="mx-2" rounded="xl" color="primary" :ripple="false" prepend-icon="mdi-magnify"
+          <v-btn :disabled="store.loadingBusca" class="mx-2" rounded="xl" color="primary" :ripple="false" prepend-icon="mdi-magnify"
               elevation="0" text="BUSCAR" @click="store.buscarAcordaos(store.userOrder)"></v-btn>
         </div>
       </div>

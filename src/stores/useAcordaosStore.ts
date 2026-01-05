@@ -27,7 +27,8 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
   const userOrder = ref<'asc' | 'desc'>('desc')
 
   // estado da chamada
-  const loading = ref(false)
+  const loadingBusca = ref(false)
+  const loadingPaginacao = ref(false)
   const error   = ref<string | null>(null)
   const results = ref<AcordaoResponse[] | null>(null)
 
@@ -50,7 +51,8 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
 
   // --- função genérica de busca ---  
   async function buscarAcordaos(payloadOrder: 'asc'|'desc') {
-    loading.value = true
+    loadingBusca.value = true
+    loadingPaginacao.value = true
     error.value   = null
 
     try {
@@ -74,7 +76,8 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
       error.value   = err?.message || 'Erro na busca'
       results.value = null
     } finally {
-      loading.value = false
+      loadingBusca.value = false
+      loadingPaginacao.value = false
     }
   }
 
@@ -175,7 +178,8 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     pageOffset,
     searchAfterValue,
     userOrder,
-    loading,
+    loadingBusca,
+    loadingPaginacao,
     error,
     results,
 

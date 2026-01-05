@@ -36,12 +36,12 @@ const lastPage    = computed(() => store.totalPages)
       </div>
 
       <!-- loading -->
-      <div v-else-if="store.loading" class="pa-4">
+      <div v-else-if="store.loadingPaginacao" class="pa-4">
         <v-progress-circular indeterminate color="primary" />
       </div>
 
       <!-- sem resultados -->
-      <div v-else-if="!store.loading && sentencas.length === 0" class="pa-4">
+      <div v-else-if="!store.loadingPaginacao && sentencas.length === 0" class="pa-4">
         Nenhuma acórdão encontrada.
       </div>
 
@@ -181,35 +181,34 @@ const lastPage    = computed(() => store.totalPages)
             </VRow>
           </v-card-text>
         </v-card>
-
-        <!-- paginação -->
-        <VRow class="justify-center my-6">
-          <VBtnGroup>
-            <v-btn
-              :disabled="currentPage === 1"
-              @click="store.goToPage(currentPage-1)"
-            >
-              «
-            </v-btn>
-
-            <v-btn
-              v-for="p in pages"
-              :key="p"
-              :class="{ 'page-active': p === currentPage }"
-              @click="store.goToPage(p)"
-            >
-              {{ p }}
-            </v-btn>
-
-            <v-btn
-              :disabled="currentPage === lastPage"
-              @click="store.goToPage(currentPage+1)"
-            >
-              »
-            </v-btn>
-          </VBtnGroup>
-        </VRow>
       </template>
+    </VRow>
+    <!-- paginação -->
+    <VRow class="justify-center my-6">
+      <VBtnGroup>
+        <v-btn
+          :disabled="currentPage === 1"
+          @click="store.goToPage(currentPage-1)"
+        >
+          «
+        </v-btn>
+
+        <v-btn
+          v-for="p in pages"
+          :key="p"
+          :class="{ 'page-active': p === currentPage }"
+          @click="store.goToPage(p)"
+        >
+          {{ p }}
+        </v-btn>
+
+        <v-btn
+          :disabled="currentPage === lastPage"
+          @click="store.goToPage(currentPage+1)"
+        >
+          »
+        </v-btn>
+      </VBtnGroup>
     </VRow>
   </VRow>
 </template>
