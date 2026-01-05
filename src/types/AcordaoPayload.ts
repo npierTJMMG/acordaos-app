@@ -6,10 +6,15 @@
 export interface SearchFilter {
   ids_assuntos: number[];
   ids_classes: number[];
-  ids_orgaos: number[];
+  is_somente_ementa: string;
+  materia: string;
+  relator: string[];
+  relator_acordao: string[];
   texto: string;
-  data_inicio: string;
-  data_fim: string;
+  data_inicio_juntada: string;
+  data_fim_juntada: string;
+  data_inicio_julgamento: string;
+  data_fim_julgamento: string;
 }
 
 /**

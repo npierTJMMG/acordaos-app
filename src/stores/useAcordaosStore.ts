@@ -10,10 +10,15 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
   const searchFilters = reactive<SearchFilter>({
     ids_assuntos: [],
     ids_classes: [],
-    ids_orgaos: [],
+    is_somente_ementa: '',
+    materia: '',
+    relator: [],
+    relator_acordao: [],
     texto: '',
-    data_inicio: '',
-    data_fim: '',
+    data_inicio_juntada: '',
+    data_fim_juntada: '',
+    data_inicio_julgamento: '',
+    data_fim_julgamento: '',
   })
 
   // --- paginação e ordenação ---
@@ -156,10 +161,9 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     // Reset filtros e paginação
     searchFilters.ids_assuntos = []
     searchFilters.ids_classes = []
-    searchFilters.ids_orgaos = []
     searchFilters.texto = ''
-    searchFilters.data_inicio = ''
-    searchFilters.data_fim = ''
+    searchFilters.data_inicio_juntada = ''
+    searchFilters.data_fim_juntada = ''
     pageOffset.value = 1
     searchAfterValue.value = null
     userOrder.value = 'desc'

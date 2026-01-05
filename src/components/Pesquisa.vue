@@ -3,8 +3,7 @@ import { useAcordaosStore } from '@/stores/useAcordaosStore'
 import { ref, computed, onMounted } from 'vue'
 import AssuntosEnum from '@/enums/AssuntosEnum'
 import ClassesEnum from '@/enums/ClassesEnum'
-import { OrgaosPorJustica } from '@/util/OrgaosPorJustica'
-import type { Justica } from '@/types/Justica'
+import RelatoresEnum from '@/enums/RelatoresEnum'
 
 // Instancia a store
 const store = useAcordaosStore()
@@ -12,6 +11,7 @@ const store = useAcordaosStore()
 // Listas estáticas
 const listaAssuntos = ref(AssuntosEnum)
 const listaClasses = ref(ClassesEnum)
+const listaRelatores = ref(RelatoresEnum)
 
 // Limpa formulário e store
 function limparFormulario() {
@@ -22,30 +22,44 @@ function limparFormulario() {
 <template>
   <VRow no-gutters class="corpo flex-column w-90 w-sm-85 w-md-60">
     <v-form :disabled="store.loadingBusca || store.loadingPaginacao" class="mb-3 pa-5 elevation-1 rounded-lg position-relative">
+
+      
+        
       <label class="titulo">Pesquisa Livre</label>
-      <v-text-field
-        placeholder="Pesquisar..."
-        variant="outlined"
-        clearable
-        density="compact"
-        rounded="md"
-        color="primary"
-        hint="Busque por qualquer palavra ou termo. Use aspas duplas para buscar pelo termo exato."
-        v-model="store.searchFilters.texto"
-      />
+      <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column w-100 w-sm-70 mr-sm-3">
+          <v-text-field
+            placeholder="Pesquisar..."
+            variant="outlined"
+            clearable
+            density="compact"
+            rounded="md"
+            color="primary"
+            hint="Busque por qualquer palavra ou termo. Use aspas duplas para buscar pelo termo exato."
+            v-model="store.searchFilters.texto"
+          />
+        </div>
+        <div class="d-flex flex-column w-100 w-sm-30 ml-sm-3">
+          <v-checkbox
+            v-model="store.searchFilters.is_somente_ementa"
+            label="Pesquisar texto somente na ementa"
+            density="compact"
+            hide-details
+            color="primary"
+            class="ml-2"
+          />
+        </div>
+      </div>
 
       <div class="d-flex flex-column flex-sm-row">
-        <div class="d-flex flex-column w-100 w-sm-50 mr-sm-3">
+        <div class="d-flex flex-column w-100 w-sm-30 mr-sm-3">
           <legend class="subtitulo">Matéria</legend>
-          <v-radio-group inline v-model="store.userOrder" @change="store.setUserOrder()">
+          <v-radio-group inline v-model="store.searchFilters.materia">
             <v-radio color="primary" label="Cível" value="Cível"></v-radio>
             <v-radio color="primary" label="Criminal" value="Criminal"></v-radio>
           </v-radio-group>
         </div>
-      </div>
-      
-      <div class="d-flex flex-column flex-sm-row">
-        <div class="d-flex flex-column w-100 w-sm-50 mr-sm-3">
+        <div class="d-flex flex-column w-100 w-sm-50 ml-sm-3">
           <label class="subtitulo mb-2">Classes</label>
           <v-select
             placeholder="Selecione as classes"
@@ -64,7 +78,10 @@ function limparFormulario() {
             item-value="id"
           />
         </div>
-        <div class="d-flex flex-column w-100 w-sm-50 ml-sm-3">
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
           <label class="subtitulo mb-2">Assuntos</label>
           <v-autocomplete
             placeholder="Selecione os assuntos"
@@ -84,30 +101,96 @@ function limparFormulario() {
           />
         </div>
       </div>
+      
+      <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column w-100 w-sm-50 mr-sm-3">
+          <label class="subtitulo mb-2">Relator</label>
+          <v-select
+            placeholder="Selecione os relatores"
+            variant="outlined"
+            density="compact"
+            rounded="xl"
+            color="primary"
+            multiple
+            chips
+            closable-chips
+            clearable
+            persistent-clear
+            :items="listaRelatores"
+            v-model="store.searchFilters.relator"
+            item-title="nome"
+            item-value="nome"
+          />
+        </div>
+        <div class="d-flex flex-column w-100 w-sm-50 ml-sm-3">
+          <label class="subtitulo mb-2">Relator para o Acórdão</label>
+          <v-autocomplete
+            placeholder="Selecione os relatores para fins de acórdão"
+            variant="outlined"
+            density="compact"
+            rounded="xl"
+            color="primary"
+            multiple
+            chips
+            clearable
+            closable-chips
+            persistent-clear
+            :items="listaRelatores"
+            v-model="store.searchFilters.relator_acordao"
+            item-title="nome"
+            item-value="nome"
+          />
+        </div>
+      </div>
 
-      <fieldset class="rounded-lg d-flex align-center w-100 w-md-50 my-5">
-        <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada do acórdão</legend>
-        <div class="d-flex flex-column w-50 pa-4">
-          <label class="subtitulo">De</label>
-          <v-text-field
-            variant="outlined"
-            type="date"
-            density="compact"
-            v-model="store.searchFilters.data_inicio"
-            :disabled="store.loadingBusca || store.loadingPaginacao"
-          />
-        </div>
-        <div class="d-flex flex-column w-50 pa-4">
-          <label class="subtitulo">Até</label>
-          <v-text-field
-            variant="outlined"
-            type="date"
-            density="compact"
-            v-model="store.searchFilters.data_fim"
-            :disabled="store.loadingBusca || store.loadingPaginacao"
-          />
-        </div>
-      </fieldset>
+      <div class="d-flex flex-column flex-sm-row">
+        <fieldset class="rounded-lg d-flex align-left w-100 w-md-50 my-5">
+          <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada do acórdão</legend>
+          <div class="d-flex flex-column w-50 pa-4">
+            <label class="subtitulo">De</label>
+            <v-text-field
+              variant="outlined"
+              type="date"
+              density="compact"
+              v-model="store.searchFilters.data_inicio_juntada"
+              :disabled="store.loadingBusca || store.loadingPaginacao"
+            />
+          </div>
+          <div class="d-flex flex-column w-50 pa-4">
+            <label class="subtitulo">Até</label>
+            <v-text-field
+              variant="outlined"
+              type="date"
+              density="compact"
+              v-model="store.searchFilters.data_fim_juntada"
+              :disabled="store.loadingBusca || store.loadingPaginacao"
+            />
+          </div>
+        </fieldset>
+        <fieldset class="rounded-lg d-flex align-right w-100 w-md-50 my-5">
+          <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de julgamento</legend>
+          <div class="d-flex flex-column w-50 pa-4">
+            <label class="subtitulo">De</label>
+            <v-text-field
+              variant="outlined"
+              type="date"
+              density="compact"
+              v-model="store.searchFilters.data_inicio_julgamento"
+              :disabled="store.loadingBusca || store.loadingPaginacao"
+            />
+          </div>
+          <div class="d-flex flex-column w-50 pa-4">
+            <label class="subtitulo">Até</label>
+            <v-text-field
+              variant="outlined"
+              type="date"
+              density="compact"
+              v-model="store.searchFilters.data_fim_julgamento"
+              :disabled="store.loadingBusca || store.loadingPaginacao"
+            />
+          </div>
+        </fieldset>
+      </div>
 
       <fieldset class="rounded d-flex align-center w-100 w-md-50 my-5">
         <legend class="subtitulo">Ordenar por</legend>
