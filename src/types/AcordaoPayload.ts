@@ -18,6 +18,8 @@ export interface SearchFilter {
 export interface AcordaoPayload {
   /** Índice da página (pageOffset) */
   pageOffset: number;
+  /** Tamanho da página (pageOffset) */
+  pageSize: number;
   /** Valor para searchAfter na paginação */
   searchAfterValue: number | null;
   /** Ordem de ordenação: asc ou desc */

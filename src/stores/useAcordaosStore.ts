@@ -56,6 +56,7 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     try {
       const body: AcordaoPayload = {
         pageOffset:       Math.max(1, pageOffset.value),
+        pageSize:         Math.max(1, pageSize),
         searchAfterValue: searchAfterValue.value,
         order:            payloadOrder,
         searchFilters:    [{ ...searchFilters }],
@@ -81,7 +82,12 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
 
   // Botão buscar chama essa função apenas para setar true no loading
   async function buscarButton(payloadOrder: 'asc'|'desc') {
-    loadingBusca.value = true  
+    loadingBusca.value = true 
+
+    searchAfterValue.value = null
+    results.value = null
+    error.value = null
+
     await buscarAcordaos(payloadOrder)
   }
 
@@ -102,11 +108,11 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
 
     // extrai o cursor a partir dos resultados já carregados
     const acordaos = getAcordaos.value
-    // se for para trás, pego o timestamp da primeira acórdão
-    // se for para frente, pego o timestamp da última acórdão
+    // se for para trás, pego o id_ordenacao da primeira acórdão
+    // se for para frente, pego o id_ordenacao da última acórdão
     searchAfterValue.value = backward
-      ? acordaos[0]['@timestamp']
-      : acordaos[acordaos.length - 1]['@timestamp']
+      ? acordaos[0]['id_ordenacao']
+      : acordaos[acordaos.length - 1]['id_ordenacao']
 
     // inverte o payloadOrder apenas se for para trás
     const payloadOrder = backward

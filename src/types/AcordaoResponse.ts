@@ -12,7 +12,7 @@ export interface Acordao {
   tipo_inteiro_teor: string;
   id_orgao:          number;
   id_classe:         number;
-  "@timestamp":      number;
+  id_ordenacao:      number;
 }
 
 export interface AcordaoResponse {
