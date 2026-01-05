@@ -13,73 +13,15 @@ const store = useAcordaosStore()
 const listaAssuntos = ref(AssuntosEnum)
 const listaClasses = ref(ClassesEnum)
 
-// Carrega justiças do helper
-const justicasMap = OrgaosPorJustica()
-const justicasList = Object.values(justicasMap) as Justica[]
-
-// Estado de seleção de órgãos
-const selectedIds = ref<Set<number>>(new Set())
-const allOrgIds = justicasList.flatMap(j => j.orgaos.map(o => o.id_orgao))
-
-// Checkbox principal para justiças
-const todasJusticasSelecionadas = computed({
-  get: () => selectedIds.value.size === allOrgIds.length,
-  set: val => {
-    if (val) selectedIds.value = new Set(allOrgIds)
-    else selectedIds.value.clear()
-  }
-})
-const isJusticasIndeterminate = computed(
-  () => selectedIds.value.size > 0 && selectedIds.value.size < allOrgIds.length
-)
-
-// Estado de cada grupo de justiça
-function grupoChecked(idJustica: number) {
-  const total = justicasMap[idJustica].orgaos.length
-  const sel = justicasMap[idJustica].orgaos.filter(o => selectedIds.value.has(o.id_orgao)).length
-  return sel === total
-}
-function grupoIndeterminate(idJustica: number) {
-  const total = justicasMap[idJustica].orgaos.length
-  const sel = justicasMap[idJustica].orgaos.filter(o => selectedIds.value.has(o.id_orgao)).length
-  return sel > 0 && sel < total
-}
-
-function selecionarTodasJusticas(val: boolean) {
-  registrarDadosNoPayload()
-}
-
-function handleJusticasSelecionadas(idJustica: number) {
-  const orgs = justicasMap[idJustica].orgaos.map(o => o.id_orgao)
-  if (grupoChecked(idJustica)) orgs.forEach(id => selectedIds.value.delete(id))
-  else orgs.forEach(id => selectedIds.value.add(id))
-  registrarDadosNoPayload()
-}
-
-// Sincroniza v-select de órgãos
-const listaOrgaos = computed(() =>
-  justicasList.flatMap(j => j.orgaos.map(o => ({ id: o.id_orgao, descricao: o.des_orgao })))
-)
-const orgaosSelecionados = computed({
-  get: () => Array.from(selectedIds.value),
-  set: (arr: number[]) => { selectedIds.value = new Set(arr) }
-})
-
-// Atualiza filtros na store
-function registrarDadosNoPayload() {
-  store.searchFilters.ids_orgaos = orgaosSelecionados.value
-}
-
 // Limpa formulário e store
 function limparFormulario() {
   store.limpar()
-  selectedIds.value.clear()
 }
 </script>
 
 <template>
   <VRow no-gutters class="corpo flex-column w-90 w-sm-85 w-md-60">
-    <v-form :disabled="store.loading" class="mb-3 pa-5 elevation-1 rounded-lg position-relative">
+    <v-form :disabled="store.loadingBusca || store.loadingPaginacao" class="mb-3 pa-5 elevation-1 rounded-lg position-relative">
       <label class="titulo">Pesquisa Livre</label>
       <v-text-field
         placeholder="Pesquisar..."
@@ -92,7 +34,16 @@ function limparFormulario() {
         v-model="store.searchFilters.texto"
       />
 
-      <label class="subtitulo">Pesquisa Avançada</label>
+      <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column w-100 w-sm-50 mr-sm-3">
+          <legend class="subtitulo">Matéria</legend>
+          <v-radio-group inline v-model="store.userOrder" @change="store.setUserOrder()">
+            <v-radio color="primary" label="Cível" value="Cível"></v-radio>
+            <v-radio color="primary" label="Criminal" value="Criminal"></v-radio>
+          </v-radio-group>
+        </div>
+      </div>
+      
       <div class="d-flex flex-column flex-sm-row">
         <div class="d-flex flex-column w-100 w-sm-50 mr-sm-3">
           <label class="subtitulo mb-2">Classes</label>
@@ -135,7 +86,7 @@ function limparFormulario() {
       </div>
 
       <fieldset class="rounded-lg d-flex align-center w-100 w-md-50 my-5">
-        <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada da acórdão</legend>
+        <legend class="subtitulo" style="margin-left: 10px; padding: 0 5px 0 5px;">Data de juntada do acórdão</legend>
         <div class="d-flex flex-column w-50 pa-4">
           <label class="subtitulo">De</label>
           <v-text-field
@@ -143,7 +94,7 @@ function limparFormulario() {
             type="date"
             density="compact"
             v-model="store.searchFilters.data_inicio"
-            :disabled="store.loading"
+            :disabled="store.loadingBusca || store.loadingPaginacao"
           />
         </div>
         <div class="d-flex flex-column w-50 pa-4">
@@ -153,7 +104,7 @@ function limparFormulario() {
             type="date"
             density="compact"
             v-model="store.searchFilters.data_fim"
-            :disabled="store.loading"
+            :disabled="store.loadingBusca || store.loadingPaginacao"
           />
         </div>
       </fieldset>

@@ -1,5 +1,5 @@
 <template>
-  <v-progress-linear v-if="store.loading"
+  <v-progress-linear v-if="store.loadingBusca || store.loadingPaginacao"
     class="d-sm-none position-sticky"
     indeterminate
     color="primary">
