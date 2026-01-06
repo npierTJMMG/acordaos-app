@@ -64,7 +64,7 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
         pageSize:         Math.max(1, pageSize),
         searchAfterValue: searchAfterValue.value,
         order:            payloadOrder,
-        searchFilters:    [{ ...searchFilters }],
+        searchFilters:    { ...searchFilters },
       }
 
       const resp = await fetchAcordaos(body, {
@@ -92,6 +92,7 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     searchAfterValue.value = null
     results.value = null
     error.value = null
+    currentPage.value = 1
 
     await buscarAcordaos(payloadOrder)
   }
