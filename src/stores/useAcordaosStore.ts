@@ -170,6 +170,8 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     searchFilters.texto = ''
     searchFilters.data_inicio_juntada = ''
     searchFilters.data_fim_juntada = ''
+    searchFilters.data_inicio_julgamento = ''
+    searchFilters.data_fim_julgamento = ''
     pageOffset.value = 1
     searchAfterValue.value = null
     userOrder.value = 'desc'
