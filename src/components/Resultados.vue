@@ -152,6 +152,20 @@ const lastPage    = computed(() => store.totalPages)
               </VCol>
             </VRow>
 
+            <VRow dense v-if="s.relator_acordao">
+              <VCol
+                cols="12"
+                md="3"
+                sm="4"
+                class="text-center text-sm-right pr-sm-5"
+              >
+                <span class="subtitulo mt-1">Relator do acórdão:</span>
+              </VCol>
+              <VCol md="9" class="text-center text-sm-left">
+                {{ s.relator_acordao }}
+              </VCol>
+            </VRow>
+
             <VRow dense>
               <VCol
                 cols="12"
