@@ -117,6 +117,20 @@ const lastPage    = computed(() => store.totalPages)
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
+                <span class="subtitulo mt-1">Súmula(s):</span>
+              </VCol>
+              <VCol md="9" class="text-center text-sm-left">
+                {{ store.sumulasFormatadas(s.sumulas) }}
+              </VCol>
+            </VRow>
+
+            <VRow dense>
+              <VCol
+                cols="12"
+                md="3"
+                sm="4"
+                class="text-center text-sm-right pr-sm-5"
+              >
                 <span class="subtitulo mt-1">Assunto(s):</span>
               </VCol>
               <VCol md="9" class="text-center text-sm-left">

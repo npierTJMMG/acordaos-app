@@ -1,8 +1,9 @@
 export interface Acordao {
   num_processo:      string;
   id_tribunal:       string;
-  id_acordao:       string;
+  id_acordao:        string;
   des_assuntos:      string[];
+  sumulas:       string[];
   des_orgao:         string;
   data_juntada:      string;
   des_classe:        string;

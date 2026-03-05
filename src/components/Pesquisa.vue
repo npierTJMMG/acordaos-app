@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useAcordaosStore } from '@/stores/useAcordaosStore'
-import { ref, computed, onMounted } from 'vue'
+import { ref } from 'vue'
 import AssuntosEnum from '@/enums/AssuntosEnum'
 import ClassesEnum from '@/enums/ClassesEnum'
+import SumulasEnum from '@/enums/SumulasEnum'
 import RelatoresEnum from '@/enums/RelatoresEnum'
 
 // Instancia a store
@@ -11,6 +12,7 @@ const store = useAcordaosStore()
 // Listas estáticas
 const listaAssuntos = ref(AssuntosEnum)
 const listaClasses = ref(ClassesEnum)
+const listaSumulas = ref(SumulasEnum)
 const listaRelatores = ref(RelatoresEnum)
 
 // Limpa formulário e store
@@ -98,6 +100,28 @@ function limparFormulario() {
             v-model="store.searchFilters.ids_assuntos"
             item-title="descricao"
             item-value="id"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
+          <label class="subtitulo mb-2">Súmulas</label>
+          <v-autocomplete
+            placeholder="Selecione as súmulas"
+            variant="outlined"
+            density="compact"
+            rounded="xl"
+            color="primary"
+            multiple
+            chips
+            clearable
+            closable-chips
+            persistent-clear
+            :items="listaSumulas"
+            v-model="store.searchFilters.sumulas"
+            item-title="descricao"
+            item-value="descricao"
           />
         </div>
       </div>
