@@ -6,7 +6,7 @@
 export interface SearchFilter {
   ids_assuntos?: number[];
   ids_classes?: number[];
-  sumulas?: string[];
+  sumulas?: number;
   is_somente_ementa?: string;
   materia?: string;
   relator?: string[];

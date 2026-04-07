@@ -10,9 +10,9 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
   const searchFilters = reactive<SearchFilter>({
     ids_assuntos: [],
     ids_classes: [],
-    sumulas: [],
+    sumulas: 2,
     is_somente_ementa: '',
-    materia: '',
+    materia: 'Criminal',
     relator: [],
     relator_acordao: [],
     texto: '',
@@ -165,7 +165,7 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     searchFilters.ids_classes = []
     searchFilters.relator = []
     searchFilters.relator_acordao = []
-    searchFilters.sumulas = []
+    searchFilters.sumulas = 2
     searchFilters.is_somente_ementa = ''
     searchFilters.texto = ''
     searchFilters.data_inicio_juntada = ''
@@ -186,10 +186,6 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
   }
 
   function assuntosFormatados(dados: string[]) {
-    return dados.join('; ')
-  }
-
-  function sumulasFormatadas(dados: string[]) {
     return dados.join('; ')
   }
 
@@ -227,7 +223,6 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     limpar,
     numProcessoFormatado,
     dataFormatada,
-    assuntosFormatados,
-    sumulasFormatadas
+    assuntosFormatados
   }
 })

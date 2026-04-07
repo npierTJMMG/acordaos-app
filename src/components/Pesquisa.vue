@@ -3,7 +3,6 @@ import { useAcordaosStore } from '@/stores/useAcordaosStore'
 import { ref } from 'vue'
 import AssuntosEnum from '@/enums/AssuntosEnum'
 import ClassesEnum from '@/enums/ClassesEnum'
-import SumulasEnum from '@/enums/SumulasEnum'
 import RelatoresEnum from '@/enums/RelatoresEnum'
 
 // Instancia a store
@@ -12,7 +11,6 @@ const store = useAcordaosStore()
 // Listas estáticas
 const listaAssuntos = ref(AssuntosEnum)
 const listaClasses = ref(ClassesEnum)
-const listaSumulas = ref(SumulasEnum)
 const listaRelatores = ref(RelatoresEnum)
 
 // Limpa formulário e store
@@ -57,11 +55,11 @@ function limparFormulario() {
         <div class="d-flex flex-column w-100 w-sm-30 mr-sm-3">
           <legend class="subtitulo">Matéria</legend>
           <v-radio-group inline v-model="store.searchFilters.materia">
-            <v-radio color="primary" label="Cível" value="Cível"></v-radio>
             <v-radio color="primary" label="Criminal" value="Criminal"></v-radio>
+            <v-radio color="primary" label="Cível" value="Cível"></v-radio>
           </v-radio-group>
         </div>
-        <div class="d-flex flex-column w-100 w-sm-50 ml-sm-3">
+        <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
           <label class="subtitulo mb-2">Classes</label>
           <v-select
             placeholder="Selecione as classes"
@@ -82,7 +80,15 @@ function limparFormulario() {
         </div>
       </div>
 
-      <div class="d-flex flex-column flex-sm-row">
+      <div class="d-flex flex-column flex-sm-row">        
+        <div class="d-flex flex-column w-100 w-sm-30 mr-sm-3">
+          <legend class="subtitulo">Contém Súmulas</legend>
+          <v-radio-group inline v-model="store.searchFilters.sumulas">
+            <v-radio color="primary" label="Ambos" :value="2"></v-radio>
+            <v-radio color="primary" label="Sim" :value="1"></v-radio>
+            <v-radio color="primary" label="Não" :value="0"></v-radio>
+          </v-radio-group>
+        </div>
         <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
           <label class="subtitulo mb-2">Assuntos</label>
           <v-autocomplete
@@ -105,25 +111,6 @@ function limparFormulario() {
       </div>
 
       <div class="d-flex flex-column flex-sm-row">
-        <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
-          <label class="subtitulo mb-2">Súmulas</label>
-          <v-autocomplete
-            placeholder="Selecione as súmulas"
-            variant="outlined"
-            density="compact"
-            rounded="xl"
-            color="primary"
-            multiple
-            chips
-            clearable
-            closable-chips
-            persistent-clear
-            :items="listaSumulas"
-            v-model="store.searchFilters.sumulas"
-            item-title="descricao"
-            item-value="descricao"
-          />
-        </div>
       </div>
       
       <div class="d-flex flex-column flex-sm-row">
