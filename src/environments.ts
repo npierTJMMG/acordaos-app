@@ -8,7 +8,7 @@ let options = {
 	frontend_port: ':8080',
 	host_images: '',
 	app_version: '1.0.0',
-	app_name: 'Justiças Militares - Banco de Acórdãos',
+	app_name: 'Justiças Militares - Banco de Acórdãos e Jurisprudências',
 }
 if (process.env.NODE_ENV === 'production') {
 	options.domain = `${options.production_url}${options.production_path}`

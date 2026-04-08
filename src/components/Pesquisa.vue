@@ -80,15 +80,7 @@ function limparFormulario() {
         </div>
       </div>
 
-      <div class="d-flex flex-column flex-sm-row">        
-        <div class="d-flex flex-column w-100 w-sm-30 mr-sm-3">
-          <legend class="subtitulo">Contém Súmulas</legend>
-          <v-radio-group inline v-model="store.searchFilters.sumulas">
-            <v-radio color="primary" label="Ambos" :value="2"></v-radio>
-            <v-radio color="primary" label="Sim" :value="1"></v-radio>
-            <v-radio color="primary" label="Não" :value="0"></v-radio>
-          </v-radio-group>
-        </div>
+      <div class="d-flex flex-column flex-sm-row">
         <div class="d-flex flex-column w-100 w-sm-60 mr-sm-3">
           <label class="subtitulo mb-2">Assuntos</label>
           <v-autocomplete
