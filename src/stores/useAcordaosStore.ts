@@ -10,7 +10,6 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
   const searchFilters = reactive<SearchFilter>({
     ids_assuntos: [],
     ids_classes: [],
-    sumulas: 2,
     is_somente_ementa: '',
     materia: 'Criminal',
     relator: [],
@@ -165,7 +164,6 @@ export const useAcordaosStore = defineStore('acordaosStore', () => {
     searchFilters.ids_classes = []
     searchFilters.relator = []
     searchFilters.relator_acordao = []
-    searchFilters.sumulas = 2
     searchFilters.is_somente_ementa = ''
     searchFilters.texto = ''
     searchFilters.data_inicio_juntada = ''
