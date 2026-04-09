@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useAcordaosStore } from '@/stores/useAcordaosStore'
+import { useConteudoFullStore } from '@/stores/useConteudoFullStore'
 import type { Acordao } from '@/types/AcordaoResponse'
 
 const store = useAcordaosStore()
+const storeDownloadDoc = useConteudoFullStore()
 
 // lista de acórdãos a exibir
 const sentencas = computed<Acordao[]>(() => store.getAcordaos)
@@ -104,6 +106,14 @@ watch(
                 width="60px"
                 color="#002a5e"
                 icon="mdi-content-copy"
+                @click="storeDownloadDoc.downloadAcordao(s as any)"
+              />
+            </VBtnGroup>
+            <VBtnGroup class="justify-end" divided>
+              <v-btn
+                width="60px"
+                color="#002a5e"
+                icon="mdi-content-copy"
                 @click="store.copiarAcordao(s as any)"
               />
             </VBtnGroup>
@@ -149,20 +159,6 @@ watch(
               </VCol>
               <VCol md="9" class="text-center text-sm-left">
                 {{ (s as any).des_classe }}
-              </VCol>
-            </VRow>
-
-            <VRow dense>
-              <VCol
-                cols="12"
-                md="3"
-                sm="4"
-                class="text-center text-sm-right pr-sm-5"
-              >
-                <span class="subtitulo mt-1">Súmula(s):</span>
-              </VCol>
-              <VCol md="9" class="text-center text-sm-left">
-                {{ store.sumulasFormatadas((s as any).sumulas || []) }}
               </VCol>
             </VRow>
 
