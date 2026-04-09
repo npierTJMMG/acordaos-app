@@ -64,7 +64,7 @@ watch(
 
   <VRow
     no-gutters
-    class="corpo w-90 w-sm-80 w-md-60 justify-center my-6 elevation-1 rounded-lg"
+    class="corpo w-100 px-4 px-md-8 my-6 elevation-1 rounded-lg"
   >
     <VRow no-gutters class="flex-column ml-4 mt-4">
       <h2 class="titulo">Resultado</h2>
@@ -94,36 +94,39 @@ watch(
         <v-card
           v-for="s in sentencas"
           :key="(s as any).id_acordao"
-          class="pa-4 my-2 w-90 w-sm-80 w-md-80 elevation-0 border-sm rounded-lg"
+          class="pa-4 my-2 w-100 elevation-0 border-sm rounded-lg"
         >
           <div
             class="d-flex align-center titulo w-100 pa-2 bg-grey-lighten-1 text-uppercase rounded-lg"
           >
             <span class="titulo">Acórdão</span>
             <v-spacer />
-            <VBtnGroup class="justify-end" divided>
-              <v-btn
-                width="60px"
-                color="#002a5e"
-                icon="mdi-content-copy"
-                @click="storeDownloadDoc.downloadAcordao(s as any)"
-              />
-            </VBtnGroup>
-            <VBtnGroup class="justify-end" divided>
-              <v-btn
-                width="60px"
-                color="#002a5e"
-                icon="mdi-content-copy"
-                @click="store.copiarAcordao(s as any)"
-              />
-            </VBtnGroup>
+            <div class="d-flex justify-end ga-2">
+              <VBtnGroup divided>
+                <v-btn
+                  width="60px"
+                  color="#002a5e"
+                  icon="mdi-download"
+                  @click="storeDownloadDoc.downloadAcordao(s)"
+                />
+              </VBtnGroup>
+
+              <VBtnGroup divided>
+                <v-btn
+                  width="60px"
+                  color="#002a5e"
+                  icon="mdi-content-copy"
+                  @click="store.copiarAcordao(s as any)"
+                />
+              </VBtnGroup>
+            </div>
           </div>
 
           <v-card-text class="card-text">
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -137,7 +140,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -151,7 +154,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -165,7 +168,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -179,7 +182,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -193,7 +196,7 @@ watch(
             <VRow dense v-if="(s as any).relator_acordao">
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -207,7 +210,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -221,7 +224,7 @@ watch(
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >
@@ -232,10 +235,12 @@ watch(
               </VCol>
             </VRow>
 
+            <v-divider class="my-4" />
+
             <VRow dense>
               <VCol
                 cols="12"
-                md="3"
+                md="2"
                 sm="4"
                 class="text-center text-sm-right pr-sm-5"
               >

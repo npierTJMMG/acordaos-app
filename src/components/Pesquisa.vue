@@ -122,7 +122,7 @@ function limparFormulario() {
             :items="listaRelatores"
             v-model="store.searchFilters.relator"
             item-title="nome"
-            item-value="nome"
+            item-value="nome_normalizado"
           />
         </div>
         <div class="d-flex flex-column w-100 w-sm-50 ml-sm-3">
@@ -141,7 +141,7 @@ function limparFormulario() {
             :items="listaRelatores"
             v-model="store.searchFilters.relator_acordao"
             item-title="nome"
-            item-value="nome"
+            item-value="nome_normalizado"
           />
         </div>
       </div>
